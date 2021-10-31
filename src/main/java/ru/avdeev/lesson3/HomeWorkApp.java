@@ -50,7 +50,8 @@ public class HomeWorkApp {
 
         //8
         int[] arr8 = {1, 2, 3, 4, 5, 6};
-        arrayPrint(arrayShift(arr8, -3));
+        arrayShift(arr8, -2);
+        arrayPrint(arr8);
     }
 
     public static void arrayInversion(int[] arr) {
@@ -129,29 +130,47 @@ public class HomeWorkApp {
         return result;
     }
 
-    public static int[] arrayShift(int[] arr, int n) {
+    public static void arrayShift(int[] arr, int n) {
 
         if (n > arr.length || -n > arr.length) {
 
             n = n % arr.length;
-            if (n == 0)return arr;
+            if (n == 0)return;
         }
 
-        int[] newArr = new int[arr.length];
-
-        for (int i = 0; i < arr.length; i++) {
-
-            int newIndex = i + n;
-
-            if (newIndex >= arr.length) {
-                newIndex -= arr.length;
-            }
-            if (newIndex < 0) {
-                newIndex += arr.length;
-            }
-
-            newArr[newIndex] = arr[i];
+        boolean isLeft = false;
+        if (n < 0) {
+            n = -n;
+            isLeft = true;
         }
-        return newArr;
+
+        for (int i = 0; i < n; i++) {
+
+            if (isLeft) {
+                arrayShiftLeft(arr);
+            } else {
+                arrayShiftRight(arr);
+            }
+        }
+    }
+
+    public static void arrayShiftLeft(int[] arr) {
+
+        int tmp = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            System.arraycopy(arr, i, arr, i -1, 1);
+        }
+        arr[arr.length - 1] = tmp;
+    }
+
+    public static void arrayShiftRight(int[] arr) {
+
+        int tmp = arr[arr.length - 1];
+
+        for (int i = arr.length - 1; i > 0; i--) {
+            System.arraycopy(arr, i - 1, arr, i, 1);
+        }
+        arr[0] = tmp;
     }
 }
