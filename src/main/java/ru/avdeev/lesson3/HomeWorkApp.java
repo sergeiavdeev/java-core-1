@@ -49,7 +49,7 @@ public class HomeWorkApp {
         System.out.printf("The check balance is %b.\n", checkBalance(arr7_2));
 
         //8
-        int[] arr8 = {1, 2, 3, 4, 5, 6};
+        int[] arr8 = {1, 2, 3, 4, 5, 6, 7};
         arrayShift(arr8, -2);
         arrayPrint(arr8);
     }
